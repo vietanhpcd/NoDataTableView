@@ -41,7 +41,22 @@ class TableViewController: UITableViewController {
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         if array.count == 0 {
+            // C1: Hiển thị view nodataView
             tableView.backgroundView = nodataView
+            
+            // C2: Tạo thông báo UIAlertController
+            let alert = UIAlertController(title: "Thong Bao", message: "khong co du lieu", preferredStyle: UIAlertControllerStyle.alert)
+            // Thêm nút Đóng cho thông báo
+            alert.addAction(UIAlertAction(title: "Dong", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion:  nil)
+            
+            // C3: Tạo view bằng code
+            let noDataIndex: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataIndex.text = "No Data Index"
+            noDataIndex.textColor = UIColor.red
+            noDataIndex.textAlignment = .center
+            tableView.backgroundView = noDataIndex
+            tableView.separatorStyle = .none
         }
         return 1
     }
